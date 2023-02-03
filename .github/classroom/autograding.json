@@ -1,0 +1,54 @@
+{
+  "tests": [
+    {
+      "name": "TestSequential",
+      "setup": "",
+      "run": "make TestSequential ",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 10
+    },
+    {
+      "name": "TestParallelBasic",
+      "setup": "",
+      "run": "make TestParallelBasic ",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 16
+    },
+    {
+      "name": "TestRPCStatus",
+      "setup": "",
+      "run": "make TestRPCStatus",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2
+    },
+    {
+      "name": "TestHTTPStatus",
+      "setup": "",
+      "run": "make TestHTTPStatus",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2
+    },
+    {
+      "name": "TestParallelSumHTTP",
+      "setup": "",
+      "run": "make TestParallelSumHTTP",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 2,
+      "points": 15
+    }
+  ]
+}

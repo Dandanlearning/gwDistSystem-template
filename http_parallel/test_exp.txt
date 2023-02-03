@@ -1,0 +1,4 @@
+#DO NOT MODIFY THIS FILE
+{"file_name":"test1.txt","go_routine_nums":1,"sum":-83}
+{"file_name":"test2.txt","go_routine_nums":5,"sum":19605}
+{"file_name":"test3.txt","go_routine_nums":10,"sum":31418}
