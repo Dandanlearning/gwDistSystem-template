@@ -13,7 +13,16 @@ import (
 )
 
 func Sum(fileName string) int {
-	return 0
+	sum := 0
+	var res, s = readInts(fileName)
+	if s != nil{
+		return 0
+	}
+	for i := 0; i < len(res); i++{
+		sum += res[i]
+
+	}
+	return sum
 }
 
 //Read integers from file

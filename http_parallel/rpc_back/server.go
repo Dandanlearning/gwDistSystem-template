@@ -25,6 +25,9 @@ type SumService struct {
 
 func (s *SumService) CalcSum(args SumServiceReq, resp *SumServiceResp) error {
 	//TODO Add your code here
+	fileName := args.FileName
+	goRoutineNums := args.GoRoutineNums
+	resp.Sum = Sum(goRoutineNums, fileName)
 	return nil
 }
 

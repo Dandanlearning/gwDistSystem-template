@@ -7,6 +7,8 @@ package main
 
 import (
 	"net/rpc"
+	"fmt"
+
 )
 
 type SumServiceReq struct {
@@ -25,7 +27,16 @@ type SumServiceClient struct {
 func (s *SumServiceClient) Sum(fileName string, goRoutineNums int) (int, error) {
 	//TODO Add your code here
 	//Hint: Here is RPC Client request
-	return 0, nil
+	var args SumServiceReq 
+	args.FileName = fileName
+	args.GoRoutineNums = goRoutineNums
+	var reply SumServiceResp
+	err := sumCli.Client.Call("SumService.CalcSum", args, &reply)
+	if err != nil {
+		fmt.Println(err)
+		// return 0, nil
+	}
+	return reply.Sum, nil
 }
 
 

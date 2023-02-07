@@ -8,6 +8,7 @@
 package main
 
 import (
+	"strconv"
 	"encoding/json"
 	"io/ioutil"
 	"log"
@@ -30,8 +31,11 @@ func SumHandler(wr http.ResponseWriter, r *http.Request) {
 	//TODO You should add your code here
 	//HINT: Receive fileName(f) and goRoutineNums(g) from URL
 	//HINT: Call sumCli.Sum(fileName, goRoutineNums) to retrieve sum result
-
-
+	vars := r.URL.Query()
+	nums := vars.Get("g")
+	goRoutineNums, err = strconv.Atoi(nums)
+	fileName = vars.Get("f")
+	totalSum, err = sumCli.Sum(fileName, goRoutineNums)
 
 	//DO NOT MODIFY OUTPUT FORMAT!
 	type OutPut struct {
