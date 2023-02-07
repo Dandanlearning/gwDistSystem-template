@@ -22,8 +22,15 @@ import (
 // return sum of these Integers
 func Sum(goRoutineNums int, fileName string) int {
 	sum := 0
-	//TODO Add your code here
-
+	var res, error = readInts(fileName)
+	if error != nil{
+		return 0
+	}
+	runtime.GOMAXPROCS(goRoutineNums)
+	sum := 0
+	for _, value := range res{
+		sum += value
+	}
 	return sum
 }
 
