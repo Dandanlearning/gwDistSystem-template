@@ -28,6 +28,7 @@ func (s *SumService) CalcSum(args SumServiceReq, resp *SumServiceResp) error {
 	fileName := args.FileName
 	goRoutineNums := args.GoRoutineNums
 	resp.Sum = Sum(goRoutineNums, fileName)
+	log.Println("resp:=", resp)
 	return nil
 }
 

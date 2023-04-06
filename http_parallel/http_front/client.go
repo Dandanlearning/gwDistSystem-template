@@ -7,7 +7,7 @@ package main
 
 import (
 	"net/rpc"
-	"fmt"
+	// "fmt"
 
 )
 
@@ -31,12 +31,12 @@ func (s *SumServiceClient) Sum(fileName string, goRoutineNums int) (int, error) 
 	args.FileName = fileName
 	args.GoRoutineNums = goRoutineNums
 	var reply SumServiceResp
-	err := sumCli.Client.Call("SumService.CalcSum", args, &reply)
+	err := sumCli.Client.Call("SumService.CalcSum", &args, &reply)
 	if err != nil {
-		fmt.Println(err)
-		// return 0, nil
+		// fmt.Println(err)
+		return 0, err
 	}
-	return reply.Sum, nil
+	return reply.Sum, err
 }
 
 

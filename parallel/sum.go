@@ -10,7 +10,7 @@ import (
 	"log"
 	"os"
 	"strconv"
-	"runtime"
+	// "runtime"
 )
 
 // Read a list of integers from `fileName`
@@ -18,19 +18,45 @@ import (
 // return sum of these Integers
 // You Must start exact `goRoutineNums` go routines or you lose points here
 func Sum(goRoutineNums int, fileName string) int {
-	//TODO Add your code here
-	var res, error = readInts(fileName)
-	if error != nil{
+
+	var res, err = readInts(fileName)
+	if err != nil{
+		log.Println("Error reading file:", err)
 		return 0
 	}
-	runtime.GOMAXPROCS(goRoutineNums)
-	sum := 0
-	for _, value := range res{
-		sum += value
+
+	chunkSize := (len(res) + goRoutineNums - 1) / goRoutineNums
+	sums := make(chan int, goRoutineNums)
+
+	// Spawn a goroutine for each chunk of integers
+	for i := 0; i < goRoutineNums; i++ {
+		start := i * chunkSize
+		end := (i+1)*chunkSize
+		if end > len(res) {
+			end = len(res)
+		}
+		go func(res []int) {
+			sum := 0
+			for _, n := range res {
+				sum += n
+			}
+			sums <- sum
+		}(res[start:end])
 	}
 
-	return sum
+	// Collect the computed sums from each goroutine and add them up
+	totalSum := 0
+	for i := 0; i < goRoutineNums; i++ {
+		sum := <-sums
+		totalSum += sum
+	}
+
+	// Return the computed sum
+	return totalSum
+
 }
+
+
 
 //Read integers from file
 //Do not modify this function

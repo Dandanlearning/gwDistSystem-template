@@ -32,10 +32,13 @@ func SumHandler(wr http.ResponseWriter, r *http.Request) {
 	//HINT: Receive fileName(f) and goRoutineNums(g) from URL
 	//HINT: Call sumCli.Sum(fileName, goRoutineNums) to retrieve sum result
 	vars := r.URL.Query()
-	nums := vars.Get("g")
-	goRoutineNums, err = strconv.Atoi(nums)
+	// nums := vars.Get("g")
+	// fileName = r.URL.Query().Get("f")
+	goRoutineNumsStr := r.URL.Query().Get("g")
+	goRoutineNums, err = strconv.Atoi(goRoutineNumsStr)
 	fileName = vars.Get("f")
 	totalSum, err = sumCli.Sum(fileName, goRoutineNums)
+	// log.Println("err:", err)
 
 	//DO NOT MODIFY OUTPUT FORMAT!
 	type OutPut struct {
@@ -50,6 +53,7 @@ func SumHandler(wr http.ResponseWriter, r *http.Request) {
 		TotalSum: totalSum,
 	}
 	data, err := json.Marshal(out)
+	// log.Println("err:", err)
 	if err != nil {
 		panic(err)
 	}
